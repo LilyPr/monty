@@ -43,14 +43,36 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+/**
+ * enum mode bty  - mode for queue and stack behavior
+ * @STACK: stack mode to push to top
+ * @QUEUE: queue mode to push to the end
+ */
 
-extern stack_t **lead;
+enum mode data
+{
+	STACK,
+	QUEUE
+};
+/**
+ * struct global_s - contains memory allocated free 
+ * @d: integer value for the push opcode
+ * @token: tokenized opcode to free
+ * @data: format data to Stack(1) or Queue(0)
+ * @bty: file pointer to Monty bytecode file
+ */
+typedef struct global_s
+{
+	char *d;
+	char *sign;
+	FILE *bty;
+	enum mode data;
+} global_t;
+
+extern global_t untie;
 
 void free_global(void);
-
-void check_file(char *file, stack_t **stack);
-void parse(stack_t **stack, char *op, unsigned int line_number);
-
+void execution(void);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);

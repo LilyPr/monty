@@ -7,22 +7,24 @@
  *
  * Return: on success, always EXIT_SUCCESS
  */
-int main(int argc, char *argv[])
-{
-	stack_t *head;
 
+global_t untie;
+
+int main(int argc, char const *argv[])
+{
 	if (argc != 2)
 	{
-		printf("USAGE: monty file\n");
-		exit(EXIT_FAILURE);
+		printf(stderr, "USAGE: monty file\n");
+		return (EXIT_FAILURE);
 	}
+	untie.mode = STACK;
 
-	head = NULL;
-	lead = &head;
-
-	read_file(argv[1], &head);
-
-	exit(free_global);
-
-	exit(EXIT_SUCCESS);
+	untie.bty = fopen(argv[1], "r");
+	if (untie.bty == NULL)
+	{
+		printf(stderr, "Error: Can't open file %s\n", argv[1]);
+		return (EXIT_FAILURE);
+	}
+	execute_script();
+	return (0);
 }
