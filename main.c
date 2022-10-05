@@ -1,6 +1,6 @@
 #include "monty.h"
 
-stack_t **global_head;
+stack **lead;
 
 /**
  * main - the root of the project

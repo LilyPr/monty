@@ -11,7 +11,7 @@
 void parse(stack_t **stack, char *op, unsigned int line_number)
 {
 	int i;
-	instruction_t ops[] = {
+	instruction_t code = {
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
@@ -30,10 +30,10 @@ void parse(stack_t **stack, char *op, unsigned int line_number)
 		{NULL, NULL}
 	};
 
-	for (i = 0; ops[i].opcode; i++)
-		if (strcmp(op, ops[i].opcode) == 0)
+	for (i = 0; code[i].opcode; i++)
+		if (strcmp(op, code[i].opcode) == 0)
 		{
-			ops[i].f(stack, line_number);
+			code[i].f(stack, line_number);
 			return;
 		}
 
