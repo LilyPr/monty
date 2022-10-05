@@ -20,7 +20,7 @@ void parse(stack_t **stack, char *op, unsigned int line_number)
 		{"add", add},
 		{"nop", nop},
 		{"sub", sub},
-		{"div", _div},
+		{"div", div},
 		{"mul", mul},
 		{"mod", mod},
 		{"pchar", pchar},
