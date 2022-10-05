@@ -7,7 +7,7 @@ stack_t **global_head;
  * @argc: how many arguments were passed to a program
  * @argv: arguments vector
  *
- * Return: on scuccess, always EXIT_SUCCESS
+ * Return: on success, always EXIT_SUCCESS
  */
 int main(int argc, char *argv[])
 {

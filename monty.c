@@ -8,7 +8,7 @@
  *
  * Return: void
  */
-void parse(stack_t **stack, char *op, unsigned int line_number))
+void parse(stack_t **stack, char *op, unsigned int line_number)
 {
 	int i;
 	instruction_t ops[] = {
@@ -33,13 +33,13 @@ void parse(stack_t **stack, char *op, unsigned int line_number))
 	for (i = 0; ops[i].opcode; i++)
 		if (strcmp(op, ops[i].opcode) == 0)
 		{
-			ops[i].f(stack, line_num);
+			ops[i].f(stack, line_number);
 			return;
 		}
 
 	if (strlen(op) != 0 && op[0] != '#')
 	{
-		printf("L%u: unknown instruction %s\n", line_num, op);
+		printf("L%u: unknown instruction %s\n", line_number, op);
 		exit(EXIT_FAILURE);
 	}
 }
