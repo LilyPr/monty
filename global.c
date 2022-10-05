@@ -7,17 +7,14 @@
  */
 void free_global(void)
 {
-	stack_t *untie;
-	stack_t *fill = NULL;
-
-	untie = *lead;
-
-	while (untie)
+	stack_t *del = stack;
+	
+	while (stack)
 	{
-		fill = untie->next;
-
-		free(untie);
-
-		untie = fill;
+		stack = stack->next;
+		free(del);
+		delete = stack;
 	}
+	free(untie.token);
+	fclose(untie.bty);
 }
