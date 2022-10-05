@@ -43,8 +43,16 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+typedef struct global_lead
+{
+	char *depth;
+	char *line;
+	FILE *fp;
+} global_lead;
 
-extern stack_t **lead;
+/* EXTERNAL VARIABLES */
+/* char *argument; */
+global_lead *s;
 
 void free_global(void);
 
