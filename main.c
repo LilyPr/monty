@@ -1,7 +1,5 @@
 #include "monty.h"
 
-stack **lead;
-
 /**
  * main - the root of the project
  * @argc: how many arguments were passed to a program

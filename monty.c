@@ -3,7 +3,7 @@
 /**
  * parse  - parses commands from the line op
  * @stack: the pointer to the head of the stack
- * @opcode: the line instructions
+ * @op: the line instructions
  * @line_number: a number of the line
  *
  * Return: void
