@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "monty.h"
+
+/**
+ * file_rd - reads file, line by line
+ * @docu: the name of the file
+ * @stack: double pointer to top of the stack
+ *
+ * Return: return an error code or success
+ */
+void file_rd(char *docu, stack_t **stack)
+{
+	size_t len;
+	ssize_t line_read;
+	unsigned int digit = 0;
+	char *line = NULL;
+	FILE *fl;
+	char *core;
+
+	fl = fopen(docu, "r");
+	if (!fl)
+	{
+		printf("Error: Can't open file %s\n", docu);
+		exit(EXIT_FAILURE);
+	}
+
+	while ((line_read = getline(&line, &len, fl)) != -1)
+	{
+		core = strtok(line, DELIMS);
+		digit++;
+
+		if (core)
+			check_code(stack, core, digit);
+	}
+
+	if (line)
+		free(line);
+
+	fclose(fl);
+}

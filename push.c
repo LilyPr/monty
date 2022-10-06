@@ -1,26 +1,6 @@
 #include "monty.h"
 
 /**
- * digit - checks that a string only contains digits
- * @arg: string to check
- *
- * Return: 0 if only digits, else 1
- */
-static int digit(char *arg)
-{
-	int i;
-
-	for (i = 0; arg[i]; i++)
-	{
-		if (arg[i] == '-' && i == 0)
-			continue;
-		if (isdigit(arg[i]) == 0)
-			return (1);
-	}
-	return (0);
-}
-
-/**
  * push - push an integer onto the stack
  * @stack: double pointer to the beginning of the stack
  * @line_number: script line number
@@ -29,22 +9,29 @@ static int digit(char *arg)
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	char *arg;
-	int n;
+	stack_t *link;
+	char *digit;
 
-	arg = strtok(NULL, "\n\t\r ");
-	if (arg == NULL || digit(arg))
+	digit = strtok(NULL, DELIMS);
+	if (digit == NULL)
 	{
-		dprintf(STDOUT_FILENO,
-			"L%u: usage: push integer\n",
-			line_number);
+		printf("L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	n = atoi(arg);
-	if (!add_up(stack, n))
+
+	link = malloc(sizeof(stack_t));
+	if (link == NULL)
 	{
-		dprintf(STDOUT_FILENO, "Error: malloc failed\n");
+		printf("Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	universal.legth++;
+
+	link->n = atoi(digit);
+	link->prev = NULL;
+	link->next = *stack;
+
+	if (*stack != NULL)
+		(*stack)->prev = link;
+
+	*stack = link;
 }

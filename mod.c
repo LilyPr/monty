@@ -9,23 +9,21 @@
  */
 void mod(stack_t **stack, unsigned int line_number)
 {
-	int n;
+	stack_t *tmp;
+	int result;
 
-	if (universal.length < 2)
+	if (!stack || !(*stack) || !(*stack)->next)
 	{
-		dprintf(STDOUT_FILENO,
-			"L%u: can't mod, stack too short\n",
-			line_number);
+		printf("L%u: can't mod, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	n = (*stack)->n;
-	pop(stack, line_number);
-	if (n == 0)
-	{
-		dprintf(STDOUT_FILENO,
-			"L%u: division by zero\n",
-			line_number);
-		exit(EXIT_FAILURE);
-	}
-	(*stack)->n %= n;
+
+	tmp = *stack;
+
+	result = tmp->next->n % tmp->n;
+	tmp->next->n = result;
+
+	*stack = tmp->next;
+
+	free(tmp);
 }

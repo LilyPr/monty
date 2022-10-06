@@ -9,16 +9,21 @@
  */
 void add(stack_t **stack, unsigned int line_number)
 {
-	int n = 0;
+	stack_t *tmp;
+	int sum;
 
-	if (var.stack_len < 2)
+	if (!stack || !(*stack) || !(*stack)->next)
 	{
-		dprintf(STDOUT_FILENO,
-			"L%u: can't add, stack too short\n",
-			line_number);
+		printf("L%u: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	n += (*stack)->n;
-	m_pop(stack, line_number);
-	(*stack)->n += n;
+
+	tmp = *stack;
+
+	sum = tmp->n + tmp->next->n;
+	tmp->next->n = sum;
+
+	*stack = tmp->next;
+
+	free(tmp);
 }

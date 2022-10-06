@@ -9,22 +9,21 @@
  */
 void pchar(stack_t **stack, unsigned int line_number)
 {
-	int m;
+	int digit;
 
-	if (universal.length < 1)
+	if (!stack || !(*stack))
 	{
-		dprintf(STDOUT_FILENO,
-			"L%u: can't pchar, stack empty\n",
-			line_number);
+		printf("L%u: can't pchar, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	m = (*stack)->n;
-	if (!isascii(ch))
+
+	digit = (*stack)->n;
+
+	if (!digit)
 	{
-		dprintf(STDOUT_FILENO,
-			"L%u: can't pchar, value out of range\n",
-			line_number);
+		printf("L%u: can't pchar, value out of range\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	printf("%c\n", m);
+
+	printf("%c\n", digit);
 }

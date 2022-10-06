@@ -9,16 +9,21 @@
  */
 void mul(stack_t **stack, unsigned int line_number)
 {
-	int n;
+	stack_t *tmp;
+	int result;
 
-	if (universal.length < 2)
+	if (!stack || !(*stack) || !(*stack)->next)
 	{
-		dprintf(STDOUT_FILENO,
-			"L%u: can't mul, stack too short\n",
-			line_number);
+		printf("L%u: can't mul, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	n = (*stack)->n;
-	pop(stack, line_number);
-	(*stack)->n *= n;
+
+	tmp = *stack;
+
+	result = tmp->next->n * tmp->n;
+	tmp->next->n = result;
+
+	*stack = tmp->next;
+
+	free(tmp);
 }

@@ -2,8 +2,7 @@
 #include <ctype.h>
 
 /**
- * pstr - print string from stack of ints up to null byte,
- * first non-ascii character, or end of stack
+ * pstr - print string from stack of ints up to null byte
  * @stack: double pointer to head of stack
  * @line_number: line number of current operation
  *
@@ -11,21 +10,19 @@
  */
 void pstr(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp;
-	int m;
+	stack_t *tmp = *stack;
 
-	(void)line_number;
+	(void) line_number;
 
-	tmp = *stack;
-	while (tmp != NULL)
+	while (tmp)
 	{
-		m = tmp->n;
-		if (!isascii(m) || m == 0)
+		if (tmp->n != 0 && isdigit(tmp->n))
+			putchar(tmp->n);
+		else
 			break;
-		putchar(m);
+
 		tmp = tmp->next;
-		if (tmp == *stack)
-			break;
 	}
+
 	putchar('\n');
 }
