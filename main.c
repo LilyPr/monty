@@ -19,10 +19,7 @@ int main(int argc, char *argv[])
 
 	head = NULL;
 	universal = &head;
-
 	file_rd(argv[1], &head);
-
 	atexit(free_all);
-
 	exit(EXIT_SUCCESS);
 }

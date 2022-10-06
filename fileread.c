@@ -11,8 +11,8 @@
  */
 void file_rd(char *docu, stack_t **stack)
 {
-	int read_line;
 	size_t len;
+	ssize_t read;
 	unsigned int digit = 0;
 	char *line = NULL;
 	FILE *fl;
@@ -25,7 +25,7 @@ void file_rd(char *docu, stack_t **stack)
 		exit(EXIT_FAILURE);
 	}
 
-	while ((read_line = getline(&line, &len, fl)) != -1)
+	while ((read = getline(&line, &len, fl)) != -1)
 	{
 		core = strtok(line, DELIMS);
 		digit++;
