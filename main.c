@@ -1,5 +1,7 @@
 #include "monty.h"
 
+stack_t **universal;
+
 /**
  * main - the root of the project
  * @argc: how many arguments were passed to a program
@@ -19,7 +21,7 @@ int main(int argc, char *argv[])
 
 	head = NULL;
 	universal = &head;
-	file_rd(argv[1], &head);
+	file_rd(argv[0], &head);
 	atexit(free_all);
 	exit(EXIT_SUCCESS);
 }

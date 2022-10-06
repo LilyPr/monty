@@ -1,5 +1,8 @@
+#define _GNU_SOURCE
+
+#include <string.h> 
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 #include "monty.h"
 
 /**
@@ -12,7 +15,7 @@
 void file_rd(char *docu, stack_t **stack)
 {
 	size_t len;
-	ssize_t read;
+	ssize_t read_ln;
 	unsigned int digit = 0;
 	char *line = NULL;
 	FILE *fl;
@@ -25,7 +28,7 @@ void file_rd(char *docu, stack_t **stack)
 		exit(EXIT_FAILURE);
 	}
 
-	while ((read = getline(&line, &len, fl)) != -1)
+	while ((read_ln = getline(&line, &len, fl)) != -1)
 	{
 		core = strtok(line, DELIMS);
 		digit++;
